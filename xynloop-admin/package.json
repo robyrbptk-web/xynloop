@@ -1,0 +1,25 @@
+{
+  "name": "xynloop-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistem dashboard operasional XYNLOOP (PT. Xynra Sukses Abadi) - pembelian limbah kertas & minyak jelantah",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "npm install && npm run migrate",
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "node src/db/migrate.js",
+    "seed:demo": "node src/db/seed-demo.js",
+    "reset:demo": "node src/db/seed-demo.js --fresh",
+    "smoke": "node src/tools/smoke.js",
+    "new-admin": "node src/tools/new-admin.js",
+    "backup": "node src/tools/backup.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^4.21.2"
+  }
+}

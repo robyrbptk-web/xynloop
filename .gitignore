@@ -1,0 +1,14 @@
+# sistem operasional
+xynloop-admin/node_modules/
+xynloop-admin/data*/
+xynloop-admin/uploads*/
+xynloop-admin/backups/
+xynloop-admin/tmp/
+xynloop-admin/.env
+
+# umum
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+.vercel/

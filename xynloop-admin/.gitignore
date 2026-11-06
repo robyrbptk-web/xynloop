@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+# data & berkas (selalu di luar git: berisi foto bukti, basis data, cadangan)
+data/
+data-*/
+uploads/
+uploads-*/
+backup/
+backups/
+tmp/
+
+*.log
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
