@@ -9,6 +9,19 @@ Basis data, foto bukti pembelian, dan cadangan tersimpan di folder lokal server.
 
 ---
 
+## Dokumentasi
+
+| Berkas | Untuk siapa |
+| --- | --- |
+| [docs/panduan-admin.md](docs/panduan-admin.md) | Pemilik & admin/manajer: persiapan pertama, alur transaksi lengkap, laporan 7 tab, akun tim, pengaturan kop surat, audit, backup. |
+| [docs/panduan-purchasing.md](docs/panduan-purchasing.md) | Bagian purchasing: cari prospek, catat kunjungan, surat penawaran & lembar tanggapan, kawal pengambilan, laporan atribusi dirinya. |
+| [docs/panduan-kru.md](docs/panduan-kru.md) | Kru penjemputan (dibaca dari HP): berangkat, lacak GPS, timbang + foto, KM armada, kwitansi terbit/lunas. |
+| [docs/deploy-vps-hostinger.md](docs/deploy-vps-hostinger.md) | Pasang di VPS Hostinger + domain `.id`/`.co.id`: syarat dokumen, SSH, firewall, systemd, nginx, Let's Encrypt, cron backup, checklist go-live. |
+
+Ingin online tanpa VPS? Lihat bagian [Online tanpa VPS — Cloudflare Tunnel](#online-tanpa-vps--cloudflare-tunnel-dari-pc-kantor).
+
+---
+
 ## Isi sistem
 
 | Modul | Fungsi |
