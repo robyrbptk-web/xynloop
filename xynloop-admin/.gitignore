@@ -20,3 +20,6 @@ tmp/
 
 # konfigurasi tunnel berisi path credentials pribadi
 tunnel/config.yml
+
+# berkas antara hasil pembuatan PDF (yang di-commit hanya .pdf)
+docs/pdf/*.html

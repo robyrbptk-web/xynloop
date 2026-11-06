@@ -18,7 +18,8 @@
     "new-admin": "node src/tools/new-admin.js",
     "backup": "node src/tools/backup.js",
     "tunnel": "node src/tools/tunnel.js",
-    "tunnel:run": "node src/tools/tunnel.js run"
+    "tunnel:run": "node src/tools/tunnel.js run",
+    "docs:pdf": "node src/tools/docs-pdf.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",

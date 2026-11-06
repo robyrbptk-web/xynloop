@@ -18,6 +18,14 @@ Basis data, foto bukti pembelian, dan cadangan tersimpan di folder lokal server.
 | [docs/panduan-kru.md](docs/panduan-kru.md) | Kru penjemputan (dibaca dari HP): berangkat, lacak GPS, timbang + foto, KM armada, kwitansi terbit/lunas. |
 | [docs/deploy-vps-hostinger.md](docs/deploy-vps-hostinger.md) | Pasang di VPS Hostinger + domain `.id`/`.co.id`: syarat dokumen, SSH, firewall, systemd, nginx, Let's Encrypt, cron backup, checklist go-live. |
 
+Versi **PDF** (A4, siap cetak / kirim lewat WhatsApp) ada di [`docs/pdf/`](docs/pdf) — yang paling praktis dibagikan
+ke tim: `panduan-admin.pdf`, `panduan-purchasing.pdf`, `panduan-kru.pdf`, `deploy-vps-hostinger.pdf`, dan
+`Bundel-Panduan-XYNLOOP.pdf` (keempatnya dalam satu berkas). Buat ulang setelah dokumen `.md` diubah:
+
+```bash
+npm run docs:pdf     # memakai Microsoft Edge / Google Chrome yang sudah terpasang, tanpa dependency baru
+```
+
 Ingin online tanpa VPS? Lihat bagian [Online tanpa VPS — Cloudflare Tunnel](#online-tanpa-vps--cloudflare-tunnel-dari-pc-kantor).
 
 ---
@@ -71,6 +79,7 @@ Ganti `BOOTSTRAP_ADMIN_PASSWORD` di `.env` sebelum server menyentuh jaringan pro
 | `npm run backup` | cadangkan basis data + folder uploads ke `backups/` |
 | `npm run tunnel` | buka URL sementara dari Cloudflare Tunnel (tanpa VPS) |
 | `npm run tunnel:run` | jalankan tunnel dengan domain tetap (`tunnel/config.yml`) |
+| `npm run docs:pdf` | cetak semua panduan di `docs/` menjadi PDF A4 di `docs/pdf/` |
 
 Contoh:
 
