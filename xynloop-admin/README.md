@@ -67,6 +67,8 @@ npm run smoke http://127.0.0.1:3000
 ```
 
 Bila `--password` tidak diisi, sistem membuat password acak dan menandai akun untuk menggantinya saat login pertama.
+Untuk akun yang sudah ada, gunakan layar **Pengguna → Reset password**: isian boleh dikosongkan (sistem membuat
+password sementara acak) atau diisi password sementara pilihan Anda; sesi login akun tersebut langsung diputus.
 
 ---
 

@@ -1,0 +1,5 @@
+# Situs pemasaran (index.html) disajikan Vercel.
+# Aplikasi dashboard adalah server Node + SQLite dan dipasang di VPS sendiri,
+# jadi tidak boleh ikut ter-upload ke hosting statis.
+xynloop-admin
+.env
