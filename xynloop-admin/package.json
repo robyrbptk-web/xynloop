@@ -16,7 +16,9 @@
     "reset:demo": "node src/db/seed-demo.js --fresh",
     "smoke": "node src/tools/smoke.js",
     "new-admin": "node src/tools/new-admin.js",
-    "backup": "node src/tools/backup.js"
+    "backup": "node src/tools/backup.js",
+    "tunnel": "node src/tools/tunnel.js",
+    "tunnel:run": "node src/tools/tunnel.js run"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",

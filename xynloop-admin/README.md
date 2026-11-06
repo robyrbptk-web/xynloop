@@ -56,6 +56,8 @@ Ganti `BOOTSTRAP_ADMIN_PASSWORD` di `.env` sebelum server menyentuh jaringan pro
 | `npm run smoke` | uji end-to-end 71 poin lewat API |
 | `npm run new-admin -- --name="..." --username=...` | buat akun admin/purchasing/kru dari terminal |
 | `npm run backup` | cadangkan basis data + folder uploads ke `backups/` |
+| `npm run tunnel` | buka URL sementara dari Cloudflare Tunnel (tanpa VPS) |
+| `npm run tunnel:run` | jalankan tunnel dengan domain tetap (`tunnel/config.yml`) |
 
 Contoh:
 
@@ -79,6 +81,7 @@ Salin `.env.example` menjadi `.env`, lalu sesuaikan.
 | Variabel | Default | Keterangan |
 | --- | --- | --- |
 | `NODE_ENV` | _(kosong)_ | `production` untuk mode live |
+| `HOST` | `127.0.0.1` | Antarmuka yang dipakai; pakai `0.0.0.0` hanya bila memang perlu diakses langsung dari jaringan (container) |
 | `PORT` | `3000` | Port HTTP |
 | `SESSION_SECRET` | ada nilai dev | **wajib** di produksi (string acak ≥ 32 karakter); server menolak start mode produksi bila kosong |
 | `SESSION_DAYS` | `30` | Umur sesi login |
@@ -122,6 +125,54 @@ rsync -a --delete backups/ user@storage:/backup/xynloop/
 ```
 
 Kunci sesi (`SESSION_SECRET`) tidak ikut tersimpan di basis data — catat nilainya di tempat aman.
+
+---
+
+## Online tanpa VPS — Cloudflare Tunnel (dari PC kantor)
+
+Aplikasi tetap jalan di PC (`HOST=127.0.0.1`), `cloudflared` membuka koneksi **keluar** ke Cloudflare,
+sehingga tidak ada port yang perlu dibuka di router atau Windows Firewall, dan kru cukup membuka alamat
+HTTPS dari HP. Data, foto bukti, dan basis data berada di harddisk PC sendiri.
+
+### Cara cepat (URL acak — untuk uji coba)
+
+```powershell
+winget install --id Cloudflare.cloudflared -e
+npm start            # terminal 1
+npm run tunnel       # terminal 2 -> https://xxxx-xxxx.trycloudflare.com
+```
+
+URL ini berubah setiap kali tunnel dijalankan ulang, jadi hanya cocok untuk mencoba.
+
+### Cara permanen (domain sendiri)
+
+```powershell
+cloudflared tunnel login
+cloudflared tunnel create xynloop
+cloudflared tunnel list                       # salin TUNNEL_ID
+cloudflared tunnel route dns xynloop loop.domain-anda.com
+copy tunnel\config.example.yml tunnel\config.yml   # isi TUNNEL_ID + hostname
+npm run tunnel:run
+```
+
+Agar ikut menyala saat PC dinyalakan (butuh hak administrator):
+
+```powershell
+copy tunnel\config.yml C:\ProgramData\cloudflared\config.yml
+cloudflared service install
+sc start Cloudflared
+```
+
+Catatan penting untuk mode ini:
+
+- Aplikasi sudah membaca `X-Forwarded-Proto`, jadi cookie sesi otomatis memakai flag **Secure** di belakang tunnel.
+- Sesi login dan batas percobaan password memakai IP asli pengunjung (sudah `trust proxy`).
+- Foto bukti hanya dapat dibaca lewat `/files/*` setelah login — tidak ada tautan publik.
+- Lapis pengaman tambahan (opsional, gratis sampai 50 pengguna): pasang **Cloudflare Access** pada hostname tunnel
+  sehingga hanya email karyawan yang boleh membuka halaman login.
+- Karena data hidup di PC, **jadwalkan `npm run backup`** dan salin `backups/` keluar dari PC (Google Drive/OneDrive).
+- Sebelum dipakai sungguhan: hentikan server, hapus `data/xynloop.db*` dan isi `uploads/`, lalu `npm run migrate`
+  untuk memulai dari kosong (akun awal dibuat ulang). `npm run reset:demo` justru mengisi ulang data contoh.
 
 ---
 

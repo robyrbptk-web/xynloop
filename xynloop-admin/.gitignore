@@ -17,3 +17,6 @@ tmp/
 *.db-wal
 *.db-shm
 .DS_Store
+
+# konfigurasi tunnel berisi path credentials pribadi
+tunnel/config.yml

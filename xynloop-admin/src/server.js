@@ -89,6 +89,6 @@ app.use((err, req, res, next) => {
 
 setInterval(purgeExpiredSessions, 60 * 60 * 1000).unref();
 
-app.listen(config.port, () => {
-  console.log(`XYNLOOP Admin berjalan pada http://localhost:${config.port}`);
+app.listen(config.port, config.host, () => {
+  console.log(`XYNLOOP Admin berjalan pada http://localhost:${config.port} (hanya antarmuka ${config.host})`);
 });

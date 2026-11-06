@@ -17,6 +17,7 @@ loadEnvFile();
 const env = process.env;
 
 export const config = {
+  host: env.HOST || '127.0.0.1',
   port: Number(env.PORT || 3000),
   secret: env.SESSION_SECRET || 'xynloop-dev-secret-ganti-di-produksi',
   sessionDays: Number(env.SESSION_DAYS || 30),

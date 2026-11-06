@@ -1,0 +1,19 @@
+# Config Cloudflare Tunnel untuk XYNLOOP (domain tetap).
+# Cara pakai ringkas (butuh akun Cloudflare + domain yang sudah aktif di Cloudflare):
+#   1) cloudflared tunnel login
+#   2) cloudflared tunnel create xynloop
+#   3) cloudflared tunnel list            -> salin TUNNEL_ID
+#   4) cloudflared tunnel route dns xynloop loop.domain-anda.com
+#   5) salin berkas ini menjadi config.yml, isi TUNNEL_ID & hostname, jalankan:
+#      npm run tunnel:run
+#
+# Berkas credentials berada di C:\Users\<nama-anda>\.cloudflared\<TUNNEL_ID>.json
+# dan jangan pernah disimpan di folder proyek ini.
+
+tunnel: GANTI-DENGAN-TUNNEL-ID
+credentials-file: C:\Users\ADVAN\.cloudflared\GANTI-DENGAN-TUNNEL-ID.json
+
+ingress:
+  - hostname: loop.domain-anda.com
+    service: http://127.0.0.1:3000
+  - service: http_status:404
